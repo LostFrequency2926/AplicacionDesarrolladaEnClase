@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.danielfmunoz.myfirstform.ui.data.ResourceRemote
 import com.danielfmunoz.myfirstform.ui.data.UserRepository
+import com.danielfmunoz.myfirstform.ui.model.User
 import kotlinx.coroutines.launch
 
 class SignUpViewModel : ViewModel() {
@@ -18,9 +19,16 @@ class SignUpViewModel : ViewModel() {
     private val _isSuccessSignUp: MutableLiveData<Boolean> = MutableLiveData()
     val isSuccessSignUp: LiveData<Boolean> = _isSuccessSignUp
 
-    fun validateFields(correo: String, password: String, repetirPassword: String) {
+    fun validateFields(
+        correo: String,
+        password: String,
+        repetirPassword: String,
+        nombre: String,
+        genre: String,
+        favoriteGenre: String
+    ) {
 
-        if (correo.isEmpty() || password.isEmpty() || repetirPassword.isEmpty()) {
+        if (correo.isEmpty() || password.isEmpty() || repetirPassword.isEmpty() || nombre.isEmpty()) {
             _errorMsg.value = "Debe digitar todos los campos"
         } else {
             if (password.length < 6) {
@@ -34,7 +42,18 @@ class SignUpViewModel : ViewModel() {
                         result.let { resourceRemote ->
                             when (resourceRemote) {
                                 is ResourceRemote.Success -> {
-                                    _isSuccessSignUp.postValue(true)
+
+                                    val user = User(
+                                        uid = resourceRemote.data,
+                                        name = nombre,
+                                        email = correo,
+                                        genre = genre,
+                                        favoriteGenre = favoriteGenre
+                                    )
+
+                                    //Almacenar en la DB
+                                    createUser(user)
+                                    //_isSuccessSignUp.postValue(true)
                                 }
 
                                 is ResourceRemote.Error -> {
@@ -63,5 +82,13 @@ class SignUpViewModel : ViewModel() {
             }
 
         }
+    }
+
+    private fun createUser(user: Any) {
+
+        viewModelScope.launch {
+            val result = userRepository.createUser(user)
+        }
+
     }
 }

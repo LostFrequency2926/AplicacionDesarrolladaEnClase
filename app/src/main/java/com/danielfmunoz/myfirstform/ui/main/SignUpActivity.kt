@@ -37,8 +37,10 @@ class SignUpActivity : AppCompatActivity() {
         val correo = mainBinding.etCorreo.text.toString()
         val password = mainBinding.etPassword.text.toString()
         val repetirPassword = mainBinding.etRepetirPassword.text.toString()
+        val genre = "test"
+        val favoriteGenre = "test"
 
-        signUpViewModel.validateFields(correo, password, repetirPassword)
+        signUpViewModel.validateFields(correo, password, repetirPassword, nombre, genre, favoriteGenre)
 
     }
 }
