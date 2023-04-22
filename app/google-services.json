@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "815893266052",
+    "project_id": "my-first-form-2f95d",
+    "storage_bucket": "my-first-form-2f95d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815893266052:android:77079f05cd674b499f0cd1",
+        "android_client_info": {
+          "package_name": "com.danielfmunoz.myfirstform"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "815893266052-h4tv800b6dra883j44aahb37plpvlhkf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbx15lAozJOQL8KBkXT1tC2UL-ReMy52Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "815893266052-h4tv800b6dra883j44aahb37plpvlhkf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
