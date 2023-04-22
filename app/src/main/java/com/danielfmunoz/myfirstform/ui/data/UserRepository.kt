@@ -16,9 +16,9 @@ class UserRepository {
         return try {
             val result = auth.createUserWithEmailAndPassword(correo, password).await()
             ResourceRemote.Success(data = result.user?.uid)
-        }catch (e: FirebaseAuthException){
+        } catch (e: FirebaseAuthException) {
             ResourceRemote.Error(message = e.localizedMessage)
-        } catch (e: FirebaseNetworkException){
+        } catch (e: FirebaseNetworkException) {
             ResourceRemote.Error(message = e.localizedMessage)
         }
     }
@@ -27,10 +27,21 @@ class UserRepository {
         return try {
             val result = auth.signInWithEmailAndPassword(correo, password).await()
             ResourceRemote.Success(data = result.user?.uid)
-        }catch (e: FirebaseAuthException){
+        } catch (e: FirebaseAuthException) {
             ResourceRemote.Error(message = e.localizedMessage)
-        } catch (e: FirebaseNetworkException){
+        } catch (e: FirebaseNetworkException) {
             ResourceRemote.Error(message = e.localizedMessage)
         }
     }
+
+    fun isSessionActive() : Boolean{
+
+        return auth.currentUser != null
+    }
+
+    fun signOut() {
+        auth.signOut()
+    }
+
+
 }

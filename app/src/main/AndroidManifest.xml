@@ -12,8 +12,9 @@
         android:theme="@style/Theme.MyFirstForm"
         tools:targetApi="31">
         <activity
-            android:name=".ui.main.MainActivity"
-            android:exported="false" />
+            android:name=".ui.bottomMenu.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main" />
         <activity
             android:name=".ui.main.SignInActivity"
             android:exported="false" />
@@ -29,7 +30,7 @@
         </activity>
         <activity
             android:name=".ui.main.SignUpActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

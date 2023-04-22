@@ -1,11 +1,9 @@
 package com.danielfmunoz.myfirstform.ui.main
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.danielfmunoz.myfirstform.R
 import com.danielfmunoz.myfirstform.databinding.ActivitySignupBinding
 
 class SignUpActivity : AppCompatActivity() {
@@ -25,9 +23,8 @@ class SignUpActivity : AppCompatActivity() {
             Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show()
         }
 
-        signUpViewModel.isSuccessSignUp.observe(this){
-            val intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
+        signUpViewModel.isSuccessSignUp.observe(this) {
+            onBackPressedDispatcher.onBackPressed()
         }
 
         mainBinding.btnIngresar.setOnClickListener {
