@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.danielfmunoz.myfirstform.databinding.FragmentProfileBinding
@@ -15,7 +16,7 @@ import com.danielfmunoz.myfirstform.ui.main.SignInViewModel
 class MyProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
-    private lateinit var viewModel: MyProfileViewModel
+    private lateinit var myProfileViewModel: MyProfileViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -26,11 +27,24 @@ class MyProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val myProfileViewModel =
+        myProfileViewModel =
             ViewModelProvider(this)[MyProfileViewModel::class.java]
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        myProfileViewModel.errorMsg.observe(viewLifecycleOwner) { errorMsg ->
+            Toast.makeText(requireActivity(), errorMsg, Toast.LENGTH_SHORT).show()
+        }
+
+        myProfileViewModel.userLoaded.observe(viewLifecycleOwner) { user ->
+            with(binding){
+                nameTextView.text = user?.name
+                emailTextView.text = user?.email
+            }
+        }
+
+        myProfileViewModel.loadUserInfo()
 
         binding.buttonSignOut.setOnClickListener{
             myProfileViewModel.signOut()
@@ -40,8 +54,6 @@ class MyProfileFragment : Fragment() {
         }
 
         return root
-
-
 
     }
 

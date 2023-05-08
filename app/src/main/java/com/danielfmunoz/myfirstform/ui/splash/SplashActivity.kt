@@ -18,8 +18,6 @@ import kotlin.concurrent.timerTask
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
-    private var auth: FirebaseAuth = Firebase.auth
-
     private lateinit var splashBinding: ActivitySplashBinding
     private lateinit var splashViewModel: SplashViewModel
 

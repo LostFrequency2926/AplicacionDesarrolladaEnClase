@@ -13,8 +13,8 @@ class SignUpViewModel : ViewModel() {
 
     private val userRepository = UserRepository()
 
-    private val _errorMsg: MutableLiveData<String> = MutableLiveData()
-    val errorMsg: LiveData<String> = _errorMsg
+    private val _errorMsg: MutableLiveData<String?> = MutableLiveData()
+    val errorMsg: LiveData<String?> = _errorMsg
 
     private val _isSuccessSignUp: MutableLiveData<Boolean> = MutableLiveData()
     val isSuccessSignUp: LiveData<Boolean> = _isSuccessSignUp
@@ -84,10 +84,25 @@ class SignUpViewModel : ViewModel() {
         }
     }
 
-    private fun createUser(user: Any) {
+    private fun createUser(user: User) {
 
         viewModelScope.launch {
             val result = userRepository.createUser(user)
+            result.let { resourceRemote ->
+                when(resourceRemote){
+                    is ResourceRemote.Success -> {
+                        _isSuccessSignUp.postValue(true)
+                        _errorMsg.postValue("Registro Exitoso!!!")
+                    }
+                    is ResourceRemote.Error ->{
+                        val msg = result.message
+                        _errorMsg.postValue(msg)
+                    }
+                    else -> {
+
+                    }
+                }
+            }
         }
 
     }
