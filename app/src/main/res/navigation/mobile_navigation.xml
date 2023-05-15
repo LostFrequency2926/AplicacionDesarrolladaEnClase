@@ -9,7 +9,11 @@
         android:id="@+id/navigation_my_series"
         android:name="com.danielfmunoz.myfirstform.ui.bottomMenu.mySeries.MySeriesFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_my_series" />
+        tools:layout="@layout/fragment_my_series" >
+        <action
+            android:id="@+id/action_navigation_my_series_to_newSerieFragment2"
+            app:destination="@id/newSerirFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_series"
@@ -22,4 +26,9 @@
         android:name="com.danielfmunoz.myfirstform.ui.bottomMenu.profile.MyProfileFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/newSerirFragment"
+        android:name="com.danielfmunoz.myfirstform.ui.newSerie.NewSerieFragment"
+        android:label="fragment_new_serir"
+        tools:layout="@layout/fragment_new_serie" />
 </navigation>

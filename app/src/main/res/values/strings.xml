@@ -34,5 +34,15 @@
     <string name="title_my_series">Mis Series</string>
     <string name="title_series">Series</string>
     <string name="title_profile">Mi Perfil</string>
+    <string name="temporadas">Cantidad Temporadas</string>
+    <string name="resumen">Resumen Serie</string>
+    <string name="ranking">Ranking Serie</string>
+    <string name="genre_select">Selecciona Genero</string>
+    <string name="terror_serie">Terror</string>
+    <string name="suspen_serie">Suspenso</string>
+    <string name="drama_serie">Drama</string>
+    <string name="ciencia_serie">Ciendia Ficcion</string>
+    <string name="example_serie_name">Dark</string>
+    <string name="example_cant_temp">4 Temporadas</string>
 
 </resources>

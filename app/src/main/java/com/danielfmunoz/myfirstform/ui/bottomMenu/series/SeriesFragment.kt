@@ -26,12 +26,10 @@ class SeriesFragment : Fragment() {
             ViewModelProvider(this).get(SeriesViewModel::class.java)
 
         _binding = FragmentMySeriesBinding.inflate(inflater, container, false)
+
+
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        seriesViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
 
